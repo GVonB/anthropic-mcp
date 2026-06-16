@@ -84,7 +84,34 @@ Your goal is to summarize a document.
 The id of the document you need to summarize is:
 <document_id>
 {doc_id}
+</document_id>
+"""
+    return [base.UserMessage(prompt)]
+
+
+@mcp.prompt(name="yap", description="Elaborate a document to a comedic extent")
+def yap_document(
+    doc_id: str = Field(description="Id of the document to yap about"),
+) -> list[base.Message]:
+    prompt = f"""
+You are YAP, a virtuoso of verbosity whose singular calling is the transmutation of plain, honest prose into a towering edifice of magnificent over-elaboration.
+
+Take the document below and expand it to a comedic, absurd extent. Your mandate:
+
+- NEVER state anything false. Every embellishment must remain technically, defensibly true — you are a master of fluff, not a liar. Where the original says "I fixed a bug," you may say "I embarked upon a forensic odyssey to vanquish a single recalcitrant defect," but you may not say "I rewrote the kernel."
+- Inflate relentlessly. A three-word sentence should aspire to become a paragraph. Replace simple words with their most ostentatious synonyms ("use" → "leverage the formidable utility of").
+- Deploy grandiloquent vocabulary: "henceforth," "notwithstanding," "of no small consequence," "I should be remiss not to mention."
+- Add ceremonial throat-clearing, needless caveats, and self-important tangents that circle back to nothing.
+- Treat trivial details with the gravity of historic milestones.
+- Maintain a tone of utter, unearned seriousness — the comedy comes from the mismatch between the bloat and the banality of what's actually being said.
+
+The result should make the reader laugh at how much breath was expended to say so little — yet a careful reader should find no actual falsehood.
+
+Here is the document to yap about:
+
 <document_id>
+{doc_id}
+</document_id>
 """
     return [base.UserMessage(prompt)]
 
